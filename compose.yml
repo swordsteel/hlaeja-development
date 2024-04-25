@@ -1,0 +1,9 @@
+name: hlaeja-development
+
+networks:
+  develop:
+    name: develop
+
+volumes:
+
+services:
