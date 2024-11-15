@@ -22,6 +22,19 @@ Plugin containing gradle task and setting used by common, library, and service r
 
 Library containing all internal messages for services. GitHub [Hlæja Common Messages](https://github.com/swordsteel/hlaeja-common-messages)
 
+## Services
+
+### Device Data
+
+Store measurement from electronic devices. GitHub [Hlæja Device Data](https://github.com/swordsteel/hlaeja-device-data)
+
+#### Environment
+
+```text
+SPRING_PROFILES_ACTIVE: docker
+INFLUXDB_TOKEN: influxdbToken==
+```
+
 ## Databases
 
 ### InfluxDB
