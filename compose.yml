@@ -30,3 +30,15 @@ services:
       DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: 
       DOCKER_INFLUXDB_INIT_ORG: hlaeja_ltd
       DOCKER_INFLUXDB_INIT_BUCKET: device-data
+
+  device-data:
+    image: hlaeja-device-data:0.1.0
+    container_name: DeviceData
+    restart: unless-stopped
+    ports:
+      - "9020:8080"
+    networks:
+      - develop
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      INFLUXDB_TOKEN:
