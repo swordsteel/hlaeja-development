@@ -21,3 +21,20 @@ Plugin containing gradle task and setting used by common, library, and service r
 ### Common Messages
 
 Library containing all internal messages for services. GitHub [Hlæja Common Messages](https://github.com/swordsteel/hlaeja-common-messages)
+
+## Databases
+
+### InfluxDB
+
+InfluxDB is a high-performance time series database designed to handle large volumes of time-stamped data. It is commonly used for monitoring, analytics, and IoT applications, where data points are associated with timestamps (e.g., sensor readings, system metrics).
+
+#### Environment
+
+```text
+DOCKER_INFLUXDB_INIT_MODE: setup
+DOCKER_INFLUXDB_INIT_USERNAME: influx
+DOCKER_INFLUXDB_INIT_PASSWORD: password
+DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: influxdbToken==
+DOCKER_INFLUXDB_INIT_ORG: hlaeja_ltd
+DOCKER_INFLUXDB_INIT_BUCKET: device-data
+```

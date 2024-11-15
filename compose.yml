@@ -5,5 +5,26 @@ networks:
     name: develop
 
 volumes:
+  influx-config:
+  influx-data:
 
 services:
+
+  influxdb:
+    image: influxdb:2.7.10-alpine
+    container_name: InfluxDB
+    restart: unless-stopped
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: influx
+      DOCKER_INFLUXDB_INIT_PASSWORD: password
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: influxdbToken==
+      DOCKER_INFLUXDB_INIT_ORG: hlaeja_ltd
+      DOCKER_INFLUXDB_INIT_BUCKET: device-data
+    networks:
+      - develop
+    ports:
+      - "8086:8086"
+    volumes:
+      - influx-data:/var/lib/influxdb2
+      - influx-config:/etc/influxdb2
