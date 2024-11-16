@@ -51,3 +51,14 @@ DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: influxdbToken==
 DOCKER_INFLUXDB_INIT_ORG: hlaeja_ltd
 DOCKER_INFLUXDB_INIT_BUCKET: device-data
 ```
+
+### PostgreSQL
+
+PostgreSQL is a powerful, open-source relational database management system (RDBMS). Known for its reliability and advanced features, it supports SQL for querying and managing data, along with extensive functionality for scalability and extensibility.
+
+#### Environment
+
+```text
+POSTGRES_USER: postgres
+POSTGRES_PASSWORD : password
+```
