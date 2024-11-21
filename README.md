@@ -35,6 +35,28 @@ SPRING_PROFILES_ACTIVE: docker
 INFLUXDB_TOKEN: influxdbToken==
 ```
 
+### Device Registry
+
+Store device information. GitHub [Hlæja Device Data](https://github.com/swordsteel/hlaeja-device-registry)
+
+#### Environment
+
+```text
+SPRING_R2DBC_URL: r2dbc:postgresql://localhost:5432/device_registry
+SPRING_R2DBC_USERBAME: services
+SPRING_R2DBC_PASSWORD: password
+JWT_PRIVATE_KEY: keys/private_key.pem
+```
+
+#### Volume
+
+This will allow you to mount a local private key `identity_private_key.pem` into the container. read `IDENTITY.md` for how to generate.
+
+```text
+volumes:
+  - ./keys/identity_private_key.pem:/app/resources/keys/private_key.pem
+```
+
 ## Databases
 
 ### InfluxDB

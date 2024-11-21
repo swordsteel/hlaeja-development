@@ -12,7 +12,7 @@ volumes:
 services:
 
   device-data:
-    image: hlaeja-device-data:0.1.0
+    image: hlaeja-device-data:0.1.0-SNAPSHOT
     container_name: DeviceData
     restart: unless-stopped
     environment:
@@ -22,6 +22,20 @@ services:
       - develop
     ports:
       - "9020:8080"
+
+  device-registry:
+    image: hlaeja-device-registry:0.1.0-SNAPSHOT
+    container_name: DeviceRegistry
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - develop
+    ports:
+      - "9010:8080"
+#    # mount a local `identity_private_key.pem` into the container.
+#    volumes:
+#      - ./keys/identity_private_key.pem:/app/resources/keys/private_key.pem
 
   influxdb:
     image: influxdb:2.7.10-alpine
