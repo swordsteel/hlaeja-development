@@ -50,11 +50,31 @@ JWT_PRIVATE_KEY: keys/private_key.pem
 
 #### Volume
 
-This will allow you to mount a local private key `identity_private_key.pem` into the container. read `IDENTITY.md` for how to generate.
+This will allow you to mount a local private key `identity_private_key.pem` into the container. Read `IDENTITY.md` for how to generate.
 
 ```text
 volumes:
   - ./keys/identity_private_key.pem:/app/resources/keys/private_key.pem
+```
+
+### Device API
+
+Api for electronic devices. GitHub [Hlæja Device Data](https://github.com/swordsteel/hlaeja-device-api)
+
+#### Environment
+
+```text
+SPRING_PROFILES_ACTIVE: docker
+```
+
+#### Volume
+
+This will allow you to mount a local keystore `device_api_keystore.p12`, and local public key `identity_public_key.pem` into the container. Read `CERTIFICATE.md`, and `IDENTITY.md` for how to generate.
+
+```text
+volumes:
+  - ./keys/identity_public_key.pem:/app/resources/cert/public_key.pem
+  - ./keys/device_api_keystore.p12:/app/resources/cert/keystore.p12
 ```
 
 ## Databases
