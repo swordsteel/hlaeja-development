@@ -77,6 +77,17 @@ volumes:
   - ./keys/device_api_keystore.p12:/app/resources/cert/keystore.p12
 ```
 
+### Device Configuration
+
+Store configurations for electronic devices. GitHub [Hlæja Device Configuration](https://github.com/swordsteel/hlaeja-device-configuration)
+
+#### Environment
+
+```text
+SPRING_PROFILES_ACTIVE: docker
+```
+
+
 ## Databases
 
 ### InfluxDB
