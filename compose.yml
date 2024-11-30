@@ -13,7 +13,7 @@ volumes:
 services:
 
   device-data:
-    image: hlaeja-device-data:0.1.0-SNAPSHOT
+    image: hlaeja-device-data:0.1.0
     container_name: DeviceData
     restart: unless-stopped
     environment:
@@ -25,7 +25,7 @@ services:
       - "9020:8080"
 
   device-registry:
-    image: hlaeja-device-registry:0.1.0-SNAPSHOT
+    image: hlaeja-device-registry:0.1.0
     container_name: DeviceRegistry
     restart: unless-stopped
     environment:
@@ -39,7 +39,7 @@ services:
 #      - ./keys/identity_private_key.pem:/app/resources/keys/private_key.pem
 
   device-api:
-    image: hlaeja-device-api:0.1.0-SNAPSHOT
+    image: hlaeja-device-api:0.1.0
     container_name: DeviceApi
     restart: unless-stopped
     environment:
@@ -54,7 +54,7 @@ services:
 #      - ./keys/device_api_keystore.p12:/app/resources/cert/keystore.p12
 
   device-configuration:
-    image: hlaeja-device-configuration:0.1.0-SNAPSHOT
+    image: hlaeja-device-configuration:0.1.0
     container_name: DeviceConfiguration
     restart: unless-stopped
     environment:
