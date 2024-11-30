@@ -5,6 +5,7 @@ networks:
     name: develop
 
 volumes:
+  cassandra:
   influx-config:
   influx-data:
   postgres:
@@ -84,3 +85,17 @@ services:
       - develop
     volumes:
       - postgres:/var/lib/postgresql/data
+
+  cassandra:
+    image: cassandra:5.0.2
+    container_name: Cassandra
+    restart: unless-stopped
+    environment:
+      CASSANDRA_USER: cassandra
+      CASSANDRA_PASSWORD: password
+    networks:
+      - develop
+    ports:
+      - "9042:9042"
+    volumes:
+      - cassandra:/var/lib/cassandra

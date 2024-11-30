@@ -104,3 +104,14 @@ PostgreSQL is a powerful, open-source relational database management system (RDB
 POSTGRES_USER: postgres
 POSTGRES_PASSWORD : password
 ```
+
+### PostgreSQL
+
+Apache Cassandra is a distributed NoSQL database designed for handling large amounts of data across many commodity servers with no single point of failure. It is optimized for high availability, scalability, and fault tolerance.
+
+#### Environment
+
+```text
+CASSANDRA_USER: cassandra
+CASSANDRA_PASSWORD: password
+```
