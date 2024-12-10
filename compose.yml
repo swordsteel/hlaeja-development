@@ -25,7 +25,7 @@ services:
       - "9020:8080"
 
   device-registry:
-    image: hlaeja-device-registry:0.1.0
+    image: hlaeja-device-registry:0.2.0
     container_name: DeviceRegistry
     restart: unless-stopped
     environment:
@@ -39,7 +39,7 @@ services:
 #      - ./keys/identity_private_key.pem:/app/resources/keys/private_key.pem
 
   device-api:
-    image: hlaeja-device-api:0.1.0
+    image: hlaeja-device-api:0.2.0
     container_name: DeviceApi
     restart: unless-stopped
     environment:
