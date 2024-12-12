@@ -45,7 +45,7 @@ Store device information. GitHub [Hlæja Device Data](https://github.com/swordst
 SPRING_R2DBC_URL: r2dbc:postgresql://localhost:5432/device_registry
 SPRING_R2DBC_USERBAME: services
 SPRING_R2DBC_PASSWORD: password
-JWT_PRIVATE_KEY: keys/private_key.pem
+JWT_PRIVATE_KEY: cert/private_key.pem
 ```
 
 #### Volume
@@ -54,7 +54,7 @@ This will allow you to mount a local private key `identity_private_key.pem` into
 
 ```text
 volumes:
-  - ./keys/identity_private_key.pem:/app/resources/keys/private_key.pem
+  - ./cert/identity_private_key.pem:/app/resources/cert/private_key.pem
 ```
 
 ### Device API
