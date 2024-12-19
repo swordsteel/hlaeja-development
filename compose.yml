@@ -64,6 +64,20 @@ services:
     ports:
       - "9030:8080"
 
+  registry-api:
+    image: hlaeja-registry-api:0.1.0-SNAPSHOT
+    container_name: RegistryApi
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - develop
+    ports:
+      - "9040:8443"
+    # mount a local `identity_public_key.pem` into the container.
+    volumes:
+      - ./cert/registry_api_keystore.p12:/app/resources/cert/keystore.p12
+
   influxdb:
     image: influxdb:2.7.10-alpine
     container_name: InfluxDB
