@@ -1,6 +1,32 @@
-# Hlæja structure
+# Hlæja dependency
+
+## Service dependency
+
 ```mermaid
-graph RL;
+graph LR
+;
+  DRS[Device Registry Service]
+  DDS[Device Data Service]
+  DCS[Device Configuration Service]
+  AS[Account Service]
+  DAS[Device API Service]
+  DAS --> DRS
+  DAS --> DDS
+  DAS --> DCS
+  RAS[Registry API Service]
+  RAS --> DRS
+  RAS -.-> AS
+  MUS[Management UI Service]
+  MUS -.-> DCS
+  MUS -.-> DRS
+  MUS -.-> AS
+```
+
+## Library and Gradle plugin dependency
+
+```mermaid
+graph RL
+;
   CP[Core Plugin]
   subgraph SCP [Common Plugin]
     PL[Plugin Library]
@@ -45,4 +71,13 @@ graph RL;
   CML --> RAS
   PS --> RAS
   PCe --> RAS
+  AS[Account Service]
+  CML -.-> AS
+  PS -.-> AS
+  PCe -.-> AS
+  MUS[Management UI Service]
+  CML -.-> MUS
+  PS -.-> MUS
+  PCe -.-> MUS
 ```
+
