@@ -33,7 +33,7 @@ graph TD
   HDA --> HDC
   HDA --> HDD
   HRA --> HDR
-  HRA -.-> HAR
+  HRA --> HAR
   HM -.-> HDC
   HM -.-> HDR
   HM -.-> HAR
@@ -52,48 +52,65 @@ graph RL
     PCo[Plugin Common]
     PCoD[Plugin Common Detekt]
     PCoK[Plugin Common Ktlint]
+    PCe[Plugin Certificate]
     PS[Plugin Service]
     PSC[Plugin Service Container]
     PSIT[Plugin Service Integration Test]
     PSPR[Plugin Service Process Resource]
-    PCe[Plugin Certificate]
   end
-  PCo --> PL
   PLM --> PL
   PLP --> PL
-  CP --> PCo
+  PCo ---> PL
   PCoD --> PCo
+  CP ---> PCo
   PCoK --> PCo
-  PCo --> PS
+  PCo ---> PS
   PSC --> PS
   PSIT --> PS
   PSPR --> PS
+
   CML[Common Messages Library]
   PL --> CML
+
+  JWT[JWT Library]
+  PL --> JWT
+
   DRS[Device Registry Service]
-  CML --> DRS
   PS --> DRS
   PCe --> DRS
+  CML --> DRS
+  JWT --> DRS
+
   DDS[Device Data Service]
-  CML --> DDS
   PS --> DDS
+  CML --> DDS
+
   DCS[Device Configuration Service]
-  CML --> DCS
   PS --> DCS
+  CML --> DCS
+
   DAS[Device API Service]
   CML --> DAS
+  JWT --> DAS
   PS --> DAS
   PCe --> DAS
+
   RAS[Registry API Service]
   CML --> RAS
+  JWT --> RAS
   PS --> RAS
   PCe --> RAS
+
   AS[Account Service]
-  CML -.-> AS
-  PS -.-> AS
-  PCe -.-> AS
+  CML --> AS
+  JWT --> AS
+  PS --> AS
+  PCe --> AS
+
   MUS[Management UI Service]
   CML -.-> MUS
+  JWT -.-> MUS
   PS -.-> MUS
   PCe -.-> MUS
+  
 ```
