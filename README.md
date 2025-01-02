@@ -36,6 +36,10 @@ Plugin containing gradle task and setting used by common, library, and service r
 
 Library containing all internal messages for services. GitHub [Hlæja Common Messages](https://github.com/swordsteel/hlaeja-common-messages)
 
+#### Common JWT
+
+Library containing JWT for services. GitHub [Hlæja JWT](https://github.com/swordsteel/hlaeja-jwt)
+
 ### Services
 
 #### Device Data
@@ -56,4 +60,8 @@ Store configurations for electronic devices. GitHub [Hlæja Device Configuration
 
 #### Registry API
 
-Store configurations for electronic devices. GitHub [Hlæja Registry API](https://github.com/swordsteel/hlaeja-registry-api)
+API for register devices when flashed. GitHub [Hlæja Registry API](https://github.com/swordsteel/hlaeja-registry-api)
+
+#### Account Registry
+
+Store Information of accounts. GitHub [Hlæja Account Registry](https://github.com/swordsteel/hlaeja-account-registry)
