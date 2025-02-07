@@ -77,7 +77,6 @@ volumes:
   - ./cert/registry_api_keystore.p12:/app/resources/cert/keystore.p12
 ```
 
-
 ## Account Registry
 
 ### Environment
@@ -97,4 +96,21 @@ Mount a local private key into the container. Read [`rsa_key.md`](./rsa_key.md) 
 ```text
 volumes:
   - ./cert/account_private_key.pem:/app/resources/cert/private_key.pem
+```
+
+## Management
+
+### Environment
+
+```text
+SPRING_PROFILES_ACTIVE: docker
+```
+
+### Volume
+
+Mount a local public key into the container. Read [rsa_key.md](./rsa_key.md) for how to generate.
+
+```text
+volumes:
+  - ./cert/account_public_key.pem:/app/resources/cert/public_key.pem
 ```

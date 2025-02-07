@@ -29,14 +29,14 @@ graph TD
     HMS[Service]
   end
 
+  HM --> HAR
+  HM -.-> HDR
+  HM -.-> HDC
   HDA --> HDR
   HDA --> HDC
   HDA --> HDD
-  HRA --> HDR
   HRA --> HAR
-  HM -.-> HDC
-  HM -.-> HDR
-  HM -.-> HAR
+  HRA --> HDR
 ```
 
 ## Library and Gradle plugin dependency
@@ -72,14 +72,17 @@ graph RL
   CML[Common Messages Library]
   PL --> CML
 
-  JWT[JWT Library]
-  PL --> JWT
+  JL[JWT Library]
+  PL --> JL
+
+  TL[Test Library]
+  PL --> TL
 
   DRS[Device Registry Service]
   PS --> DRS
   PCe --> DRS
   CML --> DRS
-  JWT --> DRS
+  JL --> DRS
 
   DDS[Device Data Service]
   PS --> DDS
@@ -91,26 +94,27 @@ graph RL
 
   DAS[Device API Service]
   CML --> DAS
-  JWT --> DAS
+  JL --> DAS
   PS --> DAS
   PCe --> DAS
 
   RAS[Registry API Service]
   CML --> RAS
-  JWT --> RAS
+  JL --> RAS
   PS --> RAS
   PCe --> RAS
 
   AS[Account Service]
   CML --> AS
-  JWT --> AS
+  JL --> AS
+  TL --> AS
   PS --> AS
   PCe --> AS
 
   MUS[Management UI Service]
-  CML -.-> MUS
-  JWT -.-> MUS
-  PS -.-> MUS
+  CML --> MUS
+  JL --> MUS
+  PS --> MUS
   PCe -.-> MUS
-  
+
 ```

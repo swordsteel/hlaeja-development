@@ -23,7 +23,7 @@ PostgreSQL is a powerful, open-source relational database management system (RDB
 
 ```text
 POSTGRES_USER: postgres
-POSTGRES_PASSWORD : password
+POSTGRES_PASSWORD: password
 ```
 
 ## Apache Cassandra
