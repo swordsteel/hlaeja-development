@@ -5,6 +5,7 @@
 ```mermaid
 graph TD
 ;
+
   subgraph BE[Backend Services]
     subgraph HDR[Hlæja Device Registry]
       HDRS[Service] --> HDRD[(Postgres)]
@@ -20,23 +21,32 @@ graph TD
     end
   end
   subgraph HDA[Hlæja Device API]
-    HDAS[Service] --> HDAD[(Redis)]
+    HDAS[Service] --> HDAR[(Redis)]
   end
   subgraph HRA[Hlæja Registry API]
     HRAS[Service]
   end
   subgraph HM[Hlæja Management]
-    HMS[Service]
+    HMS[Service] -.-> HMR[(Redis)]
   end
+  subgraph HG[Hlæja Gateway]
+    HGE[Nginx]
+  end
+
+  HG -.-> HDA
+  HG -.-> HRA
+  HG -.-> HM
 
   HM --> HAR
   HM -.-> HDR
   HM -.-> HDC
+
+  HRA --> HAR
+  HRA --> HDR
+
   HDA --> HDR
   HDA --> HDC
   HDA --> HDD
-  HRA --> HAR
-  HRA --> HDR
 ```
 
 ## Library and Gradle plugin dependency
@@ -44,6 +54,7 @@ graph TD
 ```mermaid
 graph RL
 ;
+
   CP[Core Plugin]
   subgraph SCP [Common Plugin]
     PL[Plugin Library]
@@ -58,6 +69,7 @@ graph RL
     PSIT[Plugin Service Integration Test]
     PSPR[Plugin Service Process Resource]
   end
+  
   PLM --> PL
   PLP --> PL
   PCo ---> PL
@@ -81,21 +93,31 @@ graph RL
   DRS[Device Registry Service]
   PS --> DRS
   PCe --> DRS
+  TL -.-> DRS
   CML --> DRS
   JL --> DRS
 
   DDS[Device Data Service]
   PS --> DDS
+  TL -.-> DDS
   CML --> DDS
 
   DCS[Device Configuration Service]
+  TL -.-> DCS
   PS --> DCS
   CML --> DCS
 
+  AS[Account Service]
+  TL --> AS
+  CML --> AS
+  PS --> AS
+  PCe --> AS
+  JL --> AS
+
   DAS[Device API Service]
+  PS --> DAS
   CML --> DAS
   JL --> DAS
-  PS --> DAS
   PCe --> DAS
 
   RAS[Registry API Service]
@@ -104,17 +126,9 @@ graph RL
   PS --> RAS
   PCe --> RAS
 
-  AS[Account Service]
-  CML --> AS
-  JL --> AS
-  TL --> AS
-  PS --> AS
-  PCe --> AS
-
   MUS[Management UI Service]
   CML --> MUS
   JL --> MUS
   PS --> MUS
   PCe -.-> MUS
-
 ```
