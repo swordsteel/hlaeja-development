@@ -8,7 +8,7 @@ networks:
 services:
 
   device-registry:
-    image: hlaeja-device-registry:0.4.0
+    image: hlaeja-device-registry:0.5.0
     container_name: DeviceRegistry
     restart: unless-stopped
     environment:
@@ -91,7 +91,7 @@ services:
       - ./cert/account_private_key.pem:/app/resources/cert/private_key.pem
 
   management:
-    image: hlaeja-management:0.1.0
+    image: hlaeja-management:0.2.0
     container_name: Management
     restart: unless-stopped
     environment:
