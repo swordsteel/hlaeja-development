@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: device-register
+  namespace: hlaeja
+  labels:
+    app: device-register
+    environment: testing
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: device-register
+  template:
+    metadata:
+      labels:
+        app: device-register
+    spec:
+      imagePullSecrets:
+        - name: github
+      containers:
+        - name: device-register-app
+          image: ghcr.io/swordsteel/hlaeja-device-registry:0.5.0
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: device-register
+            - secretRef:
+                name: device-register
+          volumeMounts:
+            - name: jwt-key-volume
+              mountPath: /app/resources/cert
+              readOnly: true
+          ports:
+            - containerPort: 8080
+      volumes:
+        - name: jwt-key-volume
+          secret:
+            secretName: device-jwt-private-key
+            items:
+              - key: private_key.pem
+                path: private_key.pem
