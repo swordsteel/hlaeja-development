@@ -8,12 +8,19 @@
   * [Initialize](#initialize)
     * [Namespace](#namespace)
     * [Registry Secret](#registry-secret)
+    * [JSON Web Token (JWT)](#json-web-token-jwt)
   * [Databases](#databases)
     * [Postgres](#postgres)
       * [Secret](#secret)
       * [Config Map](#config-map)
       * [Stateful Set](#stateful-set)
       * [Service](#service)
+  * [Hlæja](#hlæja)
+    * [Account Register](#account-register)
+      * [Secret](#secret-1)
+      * [Config Map](#config-map-1)
+      * [Deployment](#deployment)
+      * [Service](#service-1)
 <!-- TOC -->
 
 ----
@@ -76,6 +83,24 @@ witch give `eyJhdXRocyI6eyI8eW91ci1yZWdpc3RyeT4iOnsidXNlcm5hbWUiOiJ5b3VyLXVzZXJu
 
 ---
 
+### JSON Web Token (JWT)
+
+For JWT we are using public and private keys, read more about [RSA keys](./rsa_key.md).
+
+Account private key for account service to make access token.
+
+```bash
+kubectl apply -f .\kube\01-initialize\03-account-jwt-private-key-secret.yaml
+```
+
+Account public key for all services identifying users
+
+```bash
+kubectl apply -f .\kube\01-initialize\04-account-jwt-public-key-secret.yaml
+```
+
+---
+
 ## Databases
 
 ### Postgres
@@ -121,3 +146,51 @@ this exposes port and ip.
 ```bash
 kubectl apply -f .\kube\02-databases\01-postgres\04-service.yaml
 ```
+
+---
+
+## Hlæja
+
+### Account Register
+
+This is only a ***concept*** and exist for testing rest of system. this need to be ***rewritten***.
+
+#### Secret
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\01-account-registry\01-secret.yaml
+```
+
+Set values:
+
+- postgres password
+
+#### Config Map
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\01-account-registry\02-configmap.yaml
+```
+
+Set values:
+
+- spring profile
+- postgres username
+- postgres url
+- account private jwt file location
+
+#### Deployment
+
+Account Registry Service, using `account-jwt-private-key`
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\01-account-registry\03-deployment.yaml
+```
+
+#### Service
+
+this service should not be accessible from world only open in testing
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\01-account-registry\04-service.yaml
+```
+ 
