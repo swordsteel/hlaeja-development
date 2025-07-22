@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres
+  namespace: hlaeja
+  labels:
+    app: postgres
+    environment: testing
+    tier: database
+data:
+  POSTGRES_USER: "postgres"

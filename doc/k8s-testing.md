@@ -8,6 +8,12 @@
   * [Initialize](#initialize)
     * [Namespace](#namespace)
     * [Registry Secret](#registry-secret)
+  * [Databases](#databases)
+    * [Postgres](#postgres)
+      * [Secret](#secret)
+      * [Config Map](#config-map)
+      * [Stateful Set](#stateful-set)
+      * [Service](#service)
 <!-- TOC -->
 
 ----
@@ -67,3 +73,51 @@ echo -n '{"auths":{"<your-registry>":{"username":"your-username","password":"you
 ```
 
 witch give `eyJhdXRocyI6eyI8eW91ci1yZWdpc3RyeT4iOnsidXNlcm5hbWUiOiJ5b3VyLXVzZXJuYW1lIiwicGFzc3dvcmQiOiJ5b3VyLXBhc3N3b3JkIiwiZW1haWwiOiJ5b3VyLWVtYWlsIiwiYXV0aCI6ImVXOTFjaTExYzJWeWJtRnRaVHA1YjNWeUxYQmhjM04zYjNKayJ9fX0=`
+
+---
+
+## Databases
+
+### Postgres
+
+Remember that you don't run replicas but many instances with its own storage and service.
+
+#### Secret
+
+```bash
+kubectl apply -f .\kube\02-databases\01-postgres\01-secret.yaml
+```
+
+Set values:
+
+- postgres root password
+
+using something a bit more secure `SCRAM-SHA-256$4096:f/IWlCTGdMT9qOjQlPbWtA==$qePy5ArW+7ykg3yHqW7qYH0j2384OIoV2IcBcz0mIRM=:KuU1xgnAVtOVpCZhdUJlI8F7Viz0ApmYxYEo5yXNCW0=` in this case we use `password`, to make this... use postgres to make a user and password, copy this value and now will use as admin password.
+
+#### Config Map
+
+```bash
+kubectl apply -f .\kube\02-databases\01-postgres\02-configmap.yaml
+```
+
+Set values:
+
+- postgres root user
+
+#### Stateful Set
+
+This is the specifications for postgres.
+
+```bash
+kubectl apply -f .\kube\02-databases\01-postgres\03-statefulset.yaml
+```
+
+Set storage size for permanent storage
+
+#### Service
+
+this exposes port and ip.
+
+```bash
+kubectl apply -f .\kube\02-databases\01-postgres\04-service.yaml
+```
