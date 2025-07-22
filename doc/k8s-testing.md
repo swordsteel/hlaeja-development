@@ -9,6 +9,7 @@
     * [Namespace](#namespace)
     * [Registry Secret](#registry-secret)
     * [JSON Web Token (JWT)](#json-web-token-jwt)
+    * [Keystore](#keystore)
   * [Databases](#databases)
     * [Postgres](#postgres)
       * [Secret](#secret)
@@ -21,6 +22,11 @@
       * [Config Map](#config-map-1)
       * [Deployment](#deployment)
       * [Service](#service-1)
+    * [Device Register](#device-register)
+      * [Secret](#secret-2)
+      * [Config Map](#config-map-2)
+      * [Deployment](#deployment-1)
+      * [Service](#service-2)
 <!-- TOC -->
 
 ----
@@ -97,6 +103,18 @@ Account public key for all services identifying users
 
 ```bash
 kubectl apply -f .\kube\01-initialize\04-account-jwt-public-key-secret.yaml
+```
+
+Device private key for device service to make device token.
+
+```bash
+kubectl apply -f .\kube\01-initialize\05-device-jwt-private-key-secret.yaml
+```
+
+Device public key for all services identifying devices
+
+```bash
+kubectl apply -f .\kube\01-initialize\06-device-jwt-public-key-secret.yaml
 ```
 
 ---
@@ -193,4 +211,46 @@ this service should not be accessible from world only open in testing
 ```bash
 kubectl apply -f .\kube\03-hlaeja\01-account-registry\04-service.yaml
 ```
- 
+
+---
+
+### Device Register
+
+#### Secret
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\02-device-registry\01-secret.yaml
+```
+
+Set values:
+
+- postgres password
+
+#### Config Map
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\02-device-registry\02-configmap.yaml
+```
+
+Set values:
+
+- spring profile
+- postgres username
+- postgres url
+- device private jwt file location
+
+#### Deployment
+
+Account Registry Service, using `account-jwt-private-key`
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\02-device-registry\03-deployment.yaml
+```
+
+#### Service
+
+this service should not be accessible from world only open in testing
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\02-device-registry\04-service.yaml
+```
