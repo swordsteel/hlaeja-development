@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account-register
+  namespace: hlaeja
+  labels:
+    app: account-register
+    environment: testing
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: account-register
+  template:
+    metadata:
+      labels:
+        app: account-register
+    spec:
+      imagePullSecrets:
+        - name: github
+      containers:
+        - name: account-register-app
+          image: ghcr.io/swordsteel/hlaeja-account-registry:0.2.0
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: account-register
+            - secretRef:
+                name: account-register
+          volumeMounts:
+            - name: jwt-key-volume
+              mountPath: /app/resources/cert
+              readOnly: true
+          ports:
+            - containerPort: 8080
+      volumes:
+        - name: jwt-key-volume
+          secret:
+            secretName: account-jwt-private-key
+            items:
+              - key: private_key.pem
+                path: private_key.pem

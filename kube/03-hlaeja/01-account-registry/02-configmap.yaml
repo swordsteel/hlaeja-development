@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: account-register
+  namespace: hlaeja
+  labels:
+    app: account-register
+    environment: testing
+    tier: backend
+data:
+  SPRING_PROFILES_ACTIVE: "testing"
+  SPRING_R2DBC_URL: "r2dbc:postgresql://postgres:5432/account_registry"
+  SPRING_R2DBC_USERNAME: "services"
+  JWT_PRIVATE_KEY: "cert/private_key.pem"
