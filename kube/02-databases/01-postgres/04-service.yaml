@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: hlaeja
+  labels:
+    app: postgres
+    environment: testing
+    tier: database
+  annotations:
+    metallb.universe.tf/address-pool: default
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 10.0.3.141
+  selector:
+    app: postgres
+  ports:
+    - port: 5432
+      targetPort: 5432
+      protocol: TCP
+      name: postgres
