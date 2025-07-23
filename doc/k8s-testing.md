@@ -40,6 +40,11 @@
       * [Config Map](#config-map-4)
       * [Deployment](#deployment-2)
       * [Service](#service-5)
+    * [Device Data](#device-data)
+      * [Secret](#secret-5)
+      * [Config Map](#config-map-5)
+      * [Deployment](#deployment-3)
+      * [Service](#service-6)
 <!-- TOC -->
 
 ----
@@ -409,4 +414,43 @@ this service should not be accessible from world only open in testing
 
 ```bash
 kubectl apply -f .\kube\03-hlaeja\03-device-configuration\04-service.yaml
+```
+
+---
+
+### Device Data
+
+#### Secret
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\04-device-data\01-secret.yaml
+```
+
+Set values:
+
+- influxdb token
+
+#### Config Map
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\04-device-data\02-configmap.yaml
+```
+
+Set values:
+
+- spring profile
+- influxdb url
+
+#### Deployment
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\04-device-data\03-deployment.yaml
+```
+
+#### Service
+
+this service should not be accessible from world only open in testing
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\04-device-data\04-service.yaml
 ```
