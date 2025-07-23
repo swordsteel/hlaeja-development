@@ -19,22 +19,27 @@
     * [Cassandra](#cassandra)
       * [Stateful Set](#stateful-set-1)
       * [Service](#service-1)
-  * [Hlæja](#hlæja)
-    * [Account Register](#account-register)
+    * [InfluxDb](#influxdb)
       * [Secret](#secret-1)
       * [Config Map](#config-map-1)
-      * [Deployment](#deployment)
+      * [Stateful Set](#stateful-set-2)
       * [Service](#service-2)
-    * [Device Register](#device-register)
+  * [Hlæja](#hlæja)
+    * [Account Register](#account-register)
       * [Secret](#secret-2)
       * [Config Map](#config-map-2)
-      * [Deployment](#deployment-1)
+      * [Deployment](#deployment)
       * [Service](#service-3)
-    * [Device Configuration](#device-configuration)
+    * [Device Register](#device-register)
       * [Secret](#secret-3)
       * [Config Map](#config-map-3)
-      * [Deployment](#deployment-2)
+      * [Deployment](#deployment-1)
       * [Service](#service-4)
+    * [Device Configuration](#device-configuration)
+      * [Secret](#secret-4)
+      * [Config Map](#config-map-4)
+      * [Deployment](#deployment-2)
+      * [Service](#service-5)
 <!-- TOC -->
 
 ----
@@ -222,6 +227,54 @@ this exposes port and ip.
 
 ```bash
 kubectl apply -f .\kube\02-databases\02-cassandra\02-service.yaml
+```
+
+---
+
+### InfluxDb
+
+#### Secret
+
+```bash
+kubectl apply -f .\kube\02-databases\03-influxdb\01-secret.yaml
+```
+
+Set values:
+
+- influx root password
+- influx token
+
+using something a bit more secure `SCRAM-SHA-256$4096:f/IWlCTGdMT9qOjQlPbWtA==$qePy5ArW+7ykg3yHqW7qYH0j2384OIoV2IcBcz0mIRM=:KuU1xgnAVtOVpCZhdUJlI8F7Viz0ApmYxYEo5yXNCW0=` in this case we use `password`, to make this... use postgres to make a user and password, copy this value and now will use as admin password.
+
+#### Config Map
+
+```bash
+kubectl apply -f .\kube\02-databases\03-influxdb\02-configmap.yaml
+```
+
+Set values:
+
+- influx root username
+- influx mode
+- influx organisation
+- influx bucket
+
+#### Stateful Set
+
+This is the specifications for influxdb.
+
+```bash
+kubectl apply -f .\kube\02-databases\03-infulxdb\03-statefulset.yaml
+```
+
+Set storage size for permanent storage
+
+#### Service
+
+this exposes port and ip.
+
+```bash
+kubectl apply -f .\kube\02-databases\03-infulxdb\04-service.yaml
 ```
 
 ---
