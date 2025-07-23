@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: device-data
+  namespace: hlaeja
+  labels:
+    app: device-data
+    environment: testing
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: device-data
+  template:
+    metadata:
+      labels:
+        app: device-data
+    spec:
+      imagePullSecrets:
+        - name: github
+      containers:
+        - name: device-data-app
+          image: ghcr.io/swordsteel/hlaeja-device-data:0.1.1
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: device-data
+            - secretRef:
+                name: device-data
+          ports:
+            - containerPort: 8080

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: device-data
+  namespace: hlaeja
+  labels:
+    app: device-data
+    environment: testing
+    tier: backend
+data:
+  SPRING_PROFILES_ACTIVE: "testing"
+  INFLUXDB_URL: "http://influxdb"
