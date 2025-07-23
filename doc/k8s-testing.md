@@ -30,6 +30,11 @@
       * [Config Map](#config-map-2)
       * [Deployment](#deployment-1)
       * [Service](#service-3)
+    * [Device Configuration](#device-configuration)
+      * [Secret](#secret-3)
+      * [Config Map](#config-map-3)
+      * [Deployment](#deployment-2)
+      * [Service](#service-4)
 <!-- TOC -->
 
 ----
@@ -223,6 +228,10 @@ kubectl apply -f .\kube\02-databases\02-cassandra\02-service.yaml
 
 ## Hlæja
 
+To access service use `kubectl exec -it <pod-name> -n hlaeja -- /bin/sh`
+
+To tail a service log use `kubectl logs -f <pod-name> -n hlaeja`
+
 ### Account Register
 
 This is only a ***concept*** and exist for testing rest of system. this need to be ***rewritten***.
@@ -307,4 +316,44 @@ this service should not be accessible from world only open in testing
 
 ```bash
 kubectl apply -f .\kube\03-hlaeja\02-device-registry\04-service.yaml
+```
+
+---
+
+### Device Configuration
+
+#### Secret
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\03-device-configuration\01-secret.yaml
+```
+
+Set values:
+
+- cassandra password (db have not turned this on yet)
+
+#### Config Map
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\03-device-configuration\02-configmap.yaml
+```
+
+Set values:
+
+- spring profile
+- cassandra username (db have not turned this on yet)
+- cassandra contact points
+
+#### Deployment
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\03-device-configuration\03-deployment.yaml
+```
+
+#### Service
+
+this service should not be accessible from world only open in testing
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\03-device-configuration\04-service.yaml
 ```
