@@ -16,17 +16,20 @@
       * [Config Map](#config-map)
       * [Stateful Set](#stateful-set)
       * [Service](#service)
+    * [Cassandra](#cassandra)
+      * [Stateful Set](#stateful-set-1)
+      * [Service](#service-1)
   * [Hlæja](#hlæja)
     * [Account Register](#account-register)
       * [Secret](#secret-1)
       * [Config Map](#config-map-1)
       * [Deployment](#deployment)
-      * [Service](#service-1)
+      * [Service](#service-2)
     * [Device Register](#device-register)
       * [Secret](#secret-2)
       * [Config Map](#config-map-2)
       * [Deployment](#deployment-1)
-      * [Service](#service-2)
+      * [Service](#service-3)
 <!-- TOC -->
 
 ----
@@ -163,6 +166,57 @@ this exposes port and ip.
 
 ```bash
 kubectl apply -f .\kube\02-databases\01-postgres\04-service.yaml
+```
+
+---
+
+### Cassandra
+
+For now... run basic cassandra, we need to add authentication later.
+
+to get a clean cassandra configuration:
+
+```bash
+docker run --rm cassandra:5.0 cat /etc/cassandra/cassandra.yaml > cassandra-default.yaml
+```
+
+modify `authenticator` and `authorizer` and som how get that change inside... local file get to big 262144 bytes limitation.
+
+some help things for later
+
+```bashe
+kubectl exec -it -n hlaeja cassandra-0 -- bash
+```
+
+run one of this
+
+```bash
+nodetool status
+```
+
+or
+
+```bash
+cqlsh
+SELECT data_center FROM system.local;
+```
+
+#### Stateful Set
+
+This is the specifications for cassandra.
+
+```bash
+kubectl apply -f .\kube\02-databases\02-cassandra\01-statefulset.yaml
+```
+
+Set storage size for permanent storage
+
+#### Service
+
+this exposes port and ip.
+
+```bash
+kubectl apply -f .\kube\02-databases\02-cassandra\02-service.yaml
 ```
 
 ---
