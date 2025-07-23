@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: influxdb
+  namespace: hlaeja
+  labels:
+    app: influxdb
+    environment: testing
+    tier: database
+spec:
+  serviceName: influxdb
+  replicas: 1
+  selector:
+    matchLabels:
+      app: influxdb
+  template:
+    metadata:
+      labels:
+        app: influxdb
+    spec:
+      containers:
+        - name: influxdb
+          image: influxdb:2.7.12
+          ports:
+            - containerPort: 8086
+          envFrom:
+            - configMapRef:
+                name: influxdb
+            - secretRef:
+                name: influxdb
+          volumeMounts:
+            - name: influxdb-data
+              mountPath: /var/lib/influxdb2
+  volumeClaimTemplates:
+    - metadata:
+        name: influxdb-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Gi
