@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: registry-api
+  namespace: hlaeja
+  labels:
+    app: registry-api
+    environment: testing
+    tier: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: registry-api
+  template:
+    metadata:
+      labels:
+        app: registry-api
+    spec:
+      imagePullSecrets:
+        - name: github
+      containers:
+        - name: registry-api-app
+          image: ghcr.io/swordsteel/hlaeja-registry-api:0.2.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8443
+          envFrom:
+            - configMapRef:
+                name: registry-api
+          env:
+            - name: SERVER_SSL_KEY_STORE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: registry-api-keystore
+                  key: keystore-password
+          volumeMounts:
+            - name: keystore-volume
+              mountPath: /app/resources/cert/keystore.p12
+              subPath: keystore.p12
+              readOnly: true
+            - name: jwt-volume
+              mountPath: /app/resources/cert/public_key.pem
+              subPath: public_key.pem
+              readOnly: true
+      volumes:
+        - name: keystore-volume
+          secret:
+            secretName: registry-api-keystore
+            items:
+              - key: keystore.p12
+                path: keystore.p12
+        - name: jwt-volume
+          secret:
+            secretName: account-jwt-public-key
+            items:
+              - key: public_key.pem
+                path: public_key.pem

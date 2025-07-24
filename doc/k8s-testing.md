@@ -52,6 +52,10 @@
       * [Config Map](#config-map-6)
       * [Deployment](#deployment-4)
       * [Service](#service-8)
+    * [Registry API](#registry-api)
+      * [Config Map](#config-map-7)
+      * [Deployment](#deployment-5)
+      * [Service](#service-9)
 <!-- TOC -->
 
 ----
@@ -166,6 +170,11 @@ kubectl create secret generic <name> \
 Device API Keystore
 ```bash
 kubectl apply -f .\kube\01-initialize\07-device-api-keystore.yaml
+```
+
+Registry API Keystore
+```bash
+kubectl apply -f .\kube\01-initialize\08-register-api-keystore.yaml
 ```
 
 ---
@@ -545,4 +554,66 @@ this service should not be accessible from world only open in testing
 
 ```bash
 kubectl apply -f .\kube\03-hlaeja\05-device-api\03-service.yaml
+```
+
+---
+
+### Registry API
+
+#### Config Map
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\06-registry-api\01-configmap.yaml
+```
+
+Set values:
+
+- spring profile
+- device register url
+- registry register url
+
+#### Deployment
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\06-registry-api\02-deployment.yaml
+```
+
+#### Service
+
+this service should not be accessible from world only open in testing
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\06-registry-api\03-service.yaml
+```
+
+---
+
+# Management
+
+#### Config Map
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\07-management\01-configmap.yaml
+```
+
+Set values:
+
+- spring profile
+- spring data redis database
+- spring data redis host
+- device register url
+- registry register url
+
+#### Deployment
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\07-management\02-deployment.yaml
+```
+
+#### Service
+
+this service should not be accessible from world only open in testing
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\07-management\03-service.yaml
 ```

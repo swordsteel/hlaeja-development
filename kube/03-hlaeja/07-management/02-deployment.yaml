@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: management
+  namespace: hlaeja
+  labels:
+    app: management
+    environment: testing
+    tier: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: management
+  template:
+    metadata:
+      labels:
+        app: management
+    spec:
+      imagePullSecrets:
+        - name: github
+      containers:
+        - name: management-app
+          image: ghcr.io/swordsteel/hlaeja-management:0.2.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: management
+          volumeMounts:
+            - name: jwt-volume
+              mountPath: /app/resources/cert/public_key.pem
+              subPath: public_key.pem
+              readOnly: true
+      volumes:
+        - name: jwt-volume
+          secret:
+            secretName: account-jwt-public-key
+            items:
+              - key: public_key.pem
+                path: public_key.pem
