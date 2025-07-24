@@ -1,0 +1,5 @@
+### get actuator
+GET {{hostname}}/actuator`
+Authorization: Bearer {{token}}
+Content-Type: application/json`
+

@@ -1,0 +1,11 @@
+###
+GET {{hostname}}/node-00000000-0000-7000-0000-000000000001
+
+
+### add measurement for one
+PUT {{hostname}}/node-01983d73-3a1e-792e-b910-5673f366fb3b
+Content-Type: application/json
+
+{
+  "configuration": "test"
+}

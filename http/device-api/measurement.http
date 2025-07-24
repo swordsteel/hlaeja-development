@@ -1,0 +1,23 @@
+### get measurement
+GET {{hostname}}/measurement
+Identity: {{identity}}
+
+### add measurement for all
+POST {{hostname}}/measurement
+Content-Type: application/json
+Identity: {{identity}}
+
+{
+  "button0": 0,
+  "button1": 1,
+  "button2": 0
+}
+
+### add measurement for one
+POST {{hostname}}/measurement
+Content-Type: application/json
+Identity: {{identity}}
+
+{
+  "button0": 1
+}
