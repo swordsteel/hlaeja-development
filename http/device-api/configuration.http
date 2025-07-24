@@ -1,0 +1,3 @@
+### get configuration
+GET {{hostname}}/configuration
+Identity: {{identity}}

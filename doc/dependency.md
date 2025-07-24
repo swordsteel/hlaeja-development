@@ -29,13 +29,7 @@ graph TD
   subgraph HM[Hlæja Management]
     HMS[Service] -.-> HMR[(Redis)]
   end
-  subgraph HG[Hlæja Gateway]
-    HGE[Nginx]
-  end
 
-  HG -.-> HDA
-  HG -.-> HRA
-  HG -.-> HM
 
   HM --> HAR
   HM -.-> HDR
