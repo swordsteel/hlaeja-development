@@ -24,27 +24,30 @@
       * [Config Map](#config-map-1)
       * [Stateful Set](#stateful-set-2)
       * [Service](#service-2)
+    * [Redis](#redis)
+      * [Stateful Set](#stateful-set-3)
+      * [Service](#service-3)
   * [Hlæja](#hlæja)
     * [Account Register](#account-register)
       * [Secret](#secret-2)
       * [Config Map](#config-map-2)
       * [Deployment](#deployment)
-      * [Service](#service-3)
+      * [Service](#service-4)
     * [Device Register](#device-register)
       * [Secret](#secret-3)
       * [Config Map](#config-map-3)
       * [Deployment](#deployment-1)
-      * [Service](#service-4)
+      * [Service](#service-5)
     * [Device Configuration](#device-configuration)
       * [Secret](#secret-4)
       * [Config Map](#config-map-4)
       * [Deployment](#deployment-2)
-      * [Service](#service-5)
+      * [Service](#service-6)
     * [Device Data](#device-data)
       * [Secret](#secret-5)
       * [Config Map](#config-map-5)
       * [Deployment](#deployment-3)
-      * [Service](#service-6)
+      * [Service](#service-7)
 <!-- TOC -->
 
 ----
@@ -280,6 +283,32 @@ this exposes port and ip.
 
 ```bash
 kubectl apply -f .\kube\02-databases\03-infulxdb\04-service.yaml
+```
+
+---
+
+### Redis
+
+For now... run basic redis, we need to add authentication, replication later? need to think mor about this later.
+
+#### Stateful Set
+
+This is the specifications for redis.
+
+```bash
+kubectl apply -f  .\kube\02-databases\04-redis\01-statefulset.yaml
+```
+
+Set storage size for permanent storage.
+
+did add storage for restarts and some limits.
+
+#### Service
+
+this exposes port and ip.
+
+```bash
+kubectl apply -f .\kube\02-databases\04-redis\02-service.yaml
 ```
 
 ---
