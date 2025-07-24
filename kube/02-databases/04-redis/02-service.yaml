@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  namespace: hlaeja
+  labels:
+    app: redis
+    environment: testing
+    tier: database
+  annotations:
+    metallb.universe.tf/address-pool: default
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 10.0.3.144
+  selector:
+    app: redis
+  ports:
+    - port: 6379
+      targetPort: 6379
+      protocol: TCP
+      name: cql
