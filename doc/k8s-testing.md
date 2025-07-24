@@ -48,6 +48,10 @@
       * [Config Map](#config-map-5)
       * [Deployment](#deployment-3)
       * [Service](#service-7)
+    * [Device API](#device-api)
+      * [Config Map](#config-map-6)
+      * [Deployment](#deployment-4)
+      * [Service](#service-8)
 <!-- TOC -->
 
 ----
@@ -136,6 +140,32 @@ Device public key for all services identifying devices
 
 ```bash
 kubectl apply -f .\kube\01-initialize\06-device-jwt-public-key-secret.yaml
+```
+
+---
+
+### Keystore
+
+Keystore with password read more about [Keystore.p12](./keystore.md).
+
+check cert:
+
+```
+keytool -list -v -storetype PKCS12 -keystore keystore.p12 -storepass <password>
+```
+
+option:
+
+```
+kubectl create secret generic <name> \
+  --from-file=keystore.p12=<keystore.p12> \
+  --from-literal=keystore-password=<your-keystore-password> \
+  -n <namespace>
+```
+
+Device API Keystore
+```bash
+kubectl apply -f .\kube\01-initialize\07-device-api-keystore.yaml
 ```
 
 ---
@@ -482,4 +512,37 @@ this service should not be accessible from world only open in testing
 
 ```bash
 kubectl apply -f .\kube\03-hlaeja\04-device-data\04-service.yaml
+```
+
+---
+
+### Device API
+
+#### Config Map
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\05-device-api\01-configmap.yaml
+```
+
+Set values:
+
+- spring profile
+- spring data redis database
+- spring data redis host
+- device configuration url
+- device data url
+- device register url
+
+#### Deployment
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\05-device-api\02-deployment.yaml
+```
+
+#### Service
+
+this service should not be accessible from world only open in testing
+
+```bash
+kubectl apply -f .\kube\03-hlaeja\05-device-api\03-service.yaml
 ```
