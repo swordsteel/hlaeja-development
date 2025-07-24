@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: management
+  namespace: hlaeja
+  labels:
+    app: management
+    environment: testing
+    tier: frontend
+data:
+  SPRING_PROFILES_ACTIVE: "testing"
+  SPRING_DATA_REDIS_DATABASE: "2"
+  SPRING_DATA_REDIS_HOST: "redis"
+  ACCOUNT_REGISTRY_URL: "http://account-register"
+  DEVICE_REGISTRY_URL: "http://device-register"

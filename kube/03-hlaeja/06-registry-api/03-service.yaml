@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: registry-api
+  namespace: hlaeja
+  annotations:
+    metallb.universe.tf/address-pool: default
+  labels:
+    app: registry-api
+    environment: testing
+    tier: frontend
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 10.0.3.103
+  selector:
+    app: registry-api
+  ports:
+    - protocol: TCP
+      port: 443
+      targetPort: 8443
