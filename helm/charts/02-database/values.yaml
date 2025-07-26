@@ -1,0 +1,13 @@
+postgresql:
+  auth:
+    postgresPassword: mySecretPassword
+  primary:
+    persistence:
+      size: 10Gi
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 250m
+#    service:
+#      type: LoadBalancer
+#      loadBalancerIP: 10.0.3.31
