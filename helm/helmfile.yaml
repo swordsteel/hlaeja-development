@@ -4,3 +4,9 @@ releases:
     chart: ./charts/01-secrets
     values: []
     historyMax: 3
+
+  - name: database
+    namespace: hlaeja-testing
+    chart: ./charts/02-database
+    values: []
+    historyMax: 3
