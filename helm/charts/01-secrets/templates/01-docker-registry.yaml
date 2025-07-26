@@ -1,0 +1,13 @@
+{{- range .Values.secrets.dockerRegistry }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .name }}
+  namespace: {{ $.Values.namespace }}
+  labels:
+    environment: {{ $.Values.environment }}
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: {{ .dockerRegistryConfigJson | quote }}
+---
+{{- end }}

@@ -1,0 +1,15 @@
+{{- range .Values.secrets.jwt }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .name }}
+  namespace: {{ $.Values.namespace }}
+  labels:
+    app: {{ .app }}
+    environment: {{ $.Values.environment }}
+    tier: {{ .tier }}
+type: Opaque
+data:
+  {{ .jwtFilename }}: {{ .jwtFile | quote }}
+---
+{{- end }}
