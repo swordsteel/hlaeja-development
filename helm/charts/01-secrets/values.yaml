@@ -20,6 +20,16 @@ secrets:
 #      tier: frontend
 #      jwtFilename: private_key.pem
 #      jwtFile: AccountJwtPublicKeyFileBase64==
+#    - name: device-jwt-private-key
+#      app: device-register
+#      tier: backend
+#      jwtFilename: private_key.pem
+#      jwtFile: DeviceJwtPrivateKeyFileBase64==
+#    - name: device-jwt-public-key
+#      app: device-register
+#      tier: frontend
+#      jwtFilename: private_key.pem
+#      jwtFile: DeviceJwtPublicKeyFileBase64==
 
   # Look at /doc/keystore.md to make these values
   keystore:
