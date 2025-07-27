@@ -22,3 +22,9 @@ releases:
     chart: ./charts/04-device-registry
     values: []
     historyMax: 3
+
+  - name: device-configuration
+    namespace: hlaeja-testing
+    chart: ./charts/05-device-configuration
+    values: []
+    historyMax: 3

@@ -1,0 +1,15 @@
+environment: testing
+replicas: 1
+#loadBalancerIP: 10.0.3.23
+
+docker:
+  registry: dockerRegistry
+  image: lulz.ltd/hlaeja/hlaeja-device-configuration:0.1.0
+
+secrets:
+  cassandraPassword: "password"
+
+config:
+  profiles: testing
+  cassandraContactPoints: database-cassandra
+  cassandraUsername: service

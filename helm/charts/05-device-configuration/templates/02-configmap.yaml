@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: device-configuration-environment
+  labels:
+    app: device-configuration
+    environment: {{ .Values.environment }}
+    tier: backend
+data:
+  SPRING_PROFILES_ACTIVE: {{ .Values.config.profiles | quote }}
+  SPRING_CASSANDRA_CONTACT_POINTS: {{ .Values.config.cassandraContactPoints | quote }}
+  SPRING_CASSANDRA_USERNAME: {{ .Values.config.cassandraUsername | quote }}
