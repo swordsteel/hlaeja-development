@@ -1,7 +1,7 @@
 apiVersion: v2
 name: hlaeja-database
 description: A Helm chart for the hlaeja database chart wrapper
-version: 0.2.0
+version: 0.3.0
 
 dependencies:
 
@@ -13,4 +13,9 @@ dependencies:
   # https://artifacthub.io/packages/helm/bitnami/cassandra
   - name: cassandra
     version: 12.3.9
+    repository: "oci://registry-1.docker.io/bitnamicharts"
+
+  # https://artifacthub.io/packages/helm/bitnami/influxdb
+  - name: influxdb
+    version: 6.6.16
     repository: "oci://registry-1.docker.io/bitnamicharts"

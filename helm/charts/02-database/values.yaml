@@ -27,3 +27,32 @@ cassandra:
 #  service:
 #    type: LoadBalancer
 #    loadBalancerIP: 10.0.3.32
+
+influxdb:
+  auth:
+    admin:
+      username: influxdb
+      password: mySecretPassword
+      token: influxdbAdminToken==
+    user:
+      username: service
+      password: mySecretPassword
+      token: influxdbServiceToken==
+      org: hlaeja
+      bucket: device-data
+  persistence:
+    enabled: true
+    size: 10Gi
+  resources:
+    requests:
+      memory: 512Mi
+      cpu: 250m
+  influxdb:
+    service:
+      extraPorts:
+        - name: http-alt
+          port: 80
+          targetPort: 8086
+          protocol: TCP
+#      type: LoadBalancer
+#      loadBalancerIP: 10.0.3.33
