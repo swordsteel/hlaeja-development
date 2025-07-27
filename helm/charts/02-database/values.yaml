@@ -56,3 +56,21 @@ influxdb:
           protocol: TCP
 #      type: LoadBalancer
 #      loadBalancerIP: 10.0.3.33
+
+redis:
+  architecture: standalone
+  auth:
+    enabled: true
+    password: mySecretPassword
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+  master:
+    persistence:
+      enabled: true
+      size: 1Gi
+#    service:
+#      type: LoadBalancer
+#      loadBalancerIP: 10.0.3.34
+
