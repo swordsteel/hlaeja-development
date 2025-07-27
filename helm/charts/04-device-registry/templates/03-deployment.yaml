@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: device-register
+  labels:
+    app: device-register
+    environment: {{ .Values.environment }}
+    tier: backend
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: device-register
+  template:
+    metadata:
+      labels:
+        app: device-register
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.docker.registry }}
+      containers:
+        - name: device-register-app
+          image: {{ .Values.docker.image }}
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: device-register-environment
+            - secretRef:
+                name: device-register-environment
+          volumeMounts:
+            - name: jwt-key-volume
+              mountPath: /app/resources/cert
+              readOnly: true
+          ports:
+            - containerPort: 8080
+      volumes:
+        - name: jwt-key-volume
+          secret:
+            secretName: {{ .Values.jwtPrivetKey.name }}
+            items:
+              - key: {{ .Values.jwtPrivetKey.filename }}
+                path: {{ .Values.jwtPrivetKey.filename }}

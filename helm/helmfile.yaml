@@ -16,3 +16,9 @@ releases:
     chart: ./charts/03-account-registry
     values: []
     historyMax: 3
+
+  - name: device-registry
+    namespace: hlaeja-testing
+    chart: ./charts/04-device-registry
+    values: []
+    historyMax: 3
