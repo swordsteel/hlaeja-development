@@ -10,11 +10,16 @@ secrets:
 
   # Look at /doc/rsa_key.md to make these values (we use rsa so and need a public and privet key)
   jwt:
-#    - name: jwt-key
-#      app: jwt-service
+#    - name: account-jwt-private-key
+#      app: account-register
 #      tier: backend
-#      jwtFilename: jwt_key.pem
-#      jwtFile: JwtKeyFileBase64==
+#      jwtFilename: private_key.pem
+#      jwtFile: AccountJwtPrivateKeyFileBase64==
+#    - name: account-jwt-public-key
+#      app: account-register
+#      tier: frontend
+#      jwtFilename: private_key.pem
+#      jwtFile: AccountJwtPublicKeyFileBase64==
 
   # Look at /doc/keystore.md to make these values
   keystore:

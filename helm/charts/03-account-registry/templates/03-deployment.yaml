@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account-register
+  labels:
+    app: account-register
+    environment: {{ .Values.environment }}
+    tier: backend
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: account-register
+  template:
+    metadata:
+      labels:
+        app: account-register
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.docker.registry }}
+      containers:
+        - name: account-register-app
+          image: {{ .Values.docker.image }}
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: account-register-environment
+            - secretRef:
+                name: account-register-environment
+          volumeMounts:
+            - name: jwt-key-volume
+              mountPath: /app/resources/cert
+              readOnly: true
+          ports:
+            - containerPort: 8080
+      volumes:
+        - name: jwt-key-volume
+          secret:
+            secretName: {{ .Values.jwtPrivetKey.name }}
+            items:
+              - key: {{ .Values.jwtPrivetKey.filename }}
+                path: {{ .Values.jwtPrivetKey.filename }}
