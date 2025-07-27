@@ -1,0 +1,16 @@
+environment: testing
+replicas: 1
+#loadBalancerIP: 10.0.3.24
+
+docker:
+  registry: dockerRegistry
+  image: lulz.ltd/hlaeja/hlaeja-device-data:0.1.0
+
+secrets:
+  influxdbToken: influxdbToken==
+
+config:
+  profiles: testing
+  influxdbUrl: http://database-influxdb
+#  influxdbOrg: hlaeja
+#  influxdbBucket: hlaeja_ltd

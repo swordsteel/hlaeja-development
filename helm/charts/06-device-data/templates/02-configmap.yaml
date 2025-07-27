@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: device-data-environment
+  labels:
+    app: device-data
+    environment: {{ .Values.environment }}
+    tier: backend
+data:
+  SPRING_PROFILES_ACTIVE: {{ .Values.config.profiles | quote }}
+  INFLUXDB_URL: {{ .Values.config.influxdbUrl | quote }}
+  {{- if and .Values.config.influxdbBucket (ne .Values.config.influxdbBucket "") }}
+  INFLUXDB_BUCKET: {{ .Values.config.influxdbBucket | quote }}
+  {{- end }}
+  {{- if and .Values.config.influxdbOrg (ne .Values.config.influxdbOrg "") }}
+  INFLUXDB_ORG: {{ .Values.config.influxdbOrg | quote }}
+  {{- end }}

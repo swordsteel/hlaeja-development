@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: device-data
+  labels:
+    app: device-data
+    environment: {{ .Values.environment }}
+    tier: backend
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: device-data
+  template:
+    metadata:
+      labels:
+        app: device-data
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.docker.registry }}
+      containers:
+        - name: device-data-app
+          image: {{ .Values.docker.image }}
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: device-data-environment
+            - secretRef:
+                name: device-data-environment
+          ports:
+            - containerPort: 8080
