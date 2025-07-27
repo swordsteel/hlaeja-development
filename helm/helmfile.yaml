@@ -10,3 +10,9 @@ releases:
     chart: ./charts/02-database
     values: []
     historyMax: 3
+
+  - name: account-register
+    namespace: hlaeja-testing
+    chart: ./charts/03-account-registry
+    values: []
+    historyMax: 3

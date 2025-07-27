@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: account-register
+  labels:
+    app: account-register
+    environment: {{ .Values.environment }}
+    tier: backend
+spec:
+  {{- if and .Values.loadBalancerIP (ne .Values.loadBalancerIP "") }}
+  type: LoadBalancer
+  loadBalancerIP: {{ .Values.loadBalancerIP }}
+  {{- end }}
+  selector:
+    app: account-register
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080

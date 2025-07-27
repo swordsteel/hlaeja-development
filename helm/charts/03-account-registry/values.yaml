@@ -1,0 +1,19 @@
+environment: testing
+replicas: 1
+#loadBalancerIP: 10.0.3.21
+
+docker:
+  registry: dockerRegistry
+  image: lulz.ltd/hlaeja/hlaeja-account-registry:0.1.0
+
+secrets:
+  r2dbcPassword: "password"
+
+config:
+  profiles: testing
+  r2dbcUrl: r2dbc:postgresql://database-postgresql:5432/account_registry
+  r2dbcUsername: services
+
+jwtPrivetKey:
+  name: account-jwt-private-key
+  filename: private_key.pem
