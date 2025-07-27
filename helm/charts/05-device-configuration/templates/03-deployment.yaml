@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: device-configuration
+  labels:
+    app: device-configuration
+    environment: {{ .Values.environment }}
+    tier: backend
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: device-configuration
+  template:
+    metadata:
+      labels:
+        app: device-configuration
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.docker.registry }}
+      containers:
+        - name: device-configuration-app
+          image: {{ .Values.docker.image }}
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: device-configuration-environment
+            - secretRef:
+                name: device-configuration-environment
+          ports:
+            - containerPort: 8080

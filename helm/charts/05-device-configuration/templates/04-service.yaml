@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: device-configuration
+  labels:
+    app: device-configuration
+    environment: {{ .Values.environment }}
+    tier: backend
+spec:
+  {{- if and .Values.loadBalancerIP (ne .Values.loadBalancerIP "") }}
+  type: LoadBalancer
+  loadBalancerIP: {{ .Values.loadBalancerIP }}
+  {{- end }}
+  selector:
+    app: device-configuration
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
