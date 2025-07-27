@@ -33,9 +33,9 @@ secrets:
 
   # Look at /doc/keystore.md to make these values
   keystore:
-#    - name: keystore-service
-#      app: account-register
-#      tier: backend
-#      keystoreFile: ServiceKeystoreFileBase64==
+#    - name: device-api-keystore
+#      app: device-api
+#      tier: frontend
 #      keystorePassword: ServiceKeystorePassword
+#      keystoreFile: ServiceKeystoreFileBase64==
 
