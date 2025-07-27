@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: device-api
+  labels:
+    app: device-api
+    environment: {{ .Values.environment }}
+    tier: frontend
+spec:
+  {{- if and .Values.loadBalancerIP (ne .Values.loadBalancerIP "") }}
+  type: LoadBalancer
+  loadBalancerIP: {{ .Values.loadBalancerIP }}
+  {{- end }}
+  selector:
+    app: device-api
+  ports:
+    - protocol: TCP
+      port: 443
+      targetPort: 8443

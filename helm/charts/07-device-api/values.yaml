@@ -1,0 +1,26 @@
+environment: testing
+replicas: 1
+#loadBalancerIP: 10.0.3.12
+
+docker:
+  registry: dockerRegistry
+  image: lulz.ltd/hlaeja/hlaeja-device-api:0.1.0
+
+secrets:
+  redisPassword: redisPassword
+
+config:
+  profiles: testing
+  redis:
+    database: 1
+    host: database-redis-master
+  deviceConfigurationUrl: http://device-configuration
+  deviceDataUrl: http://device-data
+  deviceRegistryUrl: http://device-register
+
+jwtPublicKey:
+  name: device-jwt-public-key
+  filename: public_key.pem
+
+
+keystoreRef: device-api-keystore

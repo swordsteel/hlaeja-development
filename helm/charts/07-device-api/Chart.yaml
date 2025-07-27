@@ -1,0 +1,4 @@
+apiVersion: v2
+name: hlaeja-device-api
+description: A Helm chart for the hlaeja device api
+version: 0.1.0

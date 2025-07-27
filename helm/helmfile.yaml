@@ -34,3 +34,9 @@ releases:
     chart: ./charts/06-device-data
     values: []
     historyMax: 3
+
+  - name: device-api
+    namespace: hlaeja-testing
+    chart: ./charts/07-device-api
+    values: []
+    historyMax: 3
