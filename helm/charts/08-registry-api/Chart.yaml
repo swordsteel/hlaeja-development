@@ -1,0 +1,4 @@
+apiVersion: v2
+name: hlaeja-registry-api
+description: A Helm chart for the hlaeja registry api
+version: 0.1.0

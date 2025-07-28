@@ -1,0 +1,18 @@
+environment: testing
+replicas: 1
+#loadBalancerIP: 10.0.3.13
+
+docker:
+  registry: dockerRegistry
+  image: lulz.ltd/hlaeja/hlaeja-registry-api:0.1.0
+
+config:
+  profiles: testing
+  accountRegistryUrl: http://account-register
+  deviceRegistryUrl: http://device-register
+
+jwtPublicKey:
+  name: account-jwt-public-key
+  filename: public_key.pem
+
+keystoreRef: registry-api-keystore

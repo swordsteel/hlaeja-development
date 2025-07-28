@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: registry-api
+  labels:
+    app: registry-api
+    environment: {{ .Values.environment }}
+    tier: frontend
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: registry-api
+  template:
+    metadata:
+      labels:
+        app: registry-api
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.docker.registry }}
+      containers:
+        - name: registry-api-app
+          image: {{ .Values.docker.image }}
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: registry-api-environment
+          env:
+            - name: SERVER_SSL_KEY_STORE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.keystoreRef }}
+                  key: keystore-password
+          ports:
+            - containerPort: 8443
+          volumeMounts:
+            - name: keystore-volume
+              mountPath: /app/resources/cert/keystore.p12
+              subPath: keystore.p12
+              readOnly: true
+            - name: jwt-volume
+              mountPath: /app/resources/cert/{{ .Values.jwtPublicKey.filename }}
+              subPath: {{ .Values.jwtPublicKey.filename }}
+              readOnly: true
+      volumes:
+        - name: keystore-volume
+          secret:
+            secretName: {{ .Values.keystoreRef }}
+            items:
+              - key: keystore.p12
+                path: keystore.p12
+        - name: jwt-volume
+          secret:
+            secretName: {{ .Values.jwtPublicKey.name }}
+            items:
+              - key: {{ .Values.jwtPublicKey.filename }}
+                path: {{ .Values.jwtPublicKey.filename }}

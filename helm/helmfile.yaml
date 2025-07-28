@@ -40,3 +40,9 @@ releases:
     chart: ./charts/07-device-api
     values: []
     historyMax: 3
+
+  - name: registry-api
+    namespace: hlaeja-testing
+    chart: ./charts/08-registry-api
+    values: []
+    historyMax: 3
