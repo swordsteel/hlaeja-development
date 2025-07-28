@@ -1,5 +1,37 @@
 # Hlæja dependency
 
+## Build Release Order
+
+*need to make pipeline for this.*
+
+Level 1
+
+- hlaeja-version-catalog
+
+Level 2
+
+- hlaeja-core-plugin
+
+Level 3
+
+- hlaeja-common-plugin
+
+Level 4
+
+- hlaeja-common-messages
+- hlaeja-jwt
+- test-library
+
+Level 5
+
+- hlaeja-account-registry
+- hlaeja-device-registry
+- hlaeja-device-configuration
+- hlaeja-device-data
+- hlaeja-device-api
+- hlaeja-registry-api
+- hlaeja-management
+
 ## Service dependency
 
 ```mermaid
@@ -32,7 +64,7 @@ graph TD
 
 
   HM --> HAR
-  HM -.-> HDR
+  HM --> HDR
   HM -.-> HDC
 
   HRA --> HAR
