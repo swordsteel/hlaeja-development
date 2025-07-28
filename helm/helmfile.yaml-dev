@@ -5,9 +5,9 @@ releases:
     values: []
     historyMax: 3
 
-  - name: database
+  - name: dependency
     namespace: hlaeja-testing
-    chart: ./charts/02-database
+    chart: ./charts/02-dependency
     values: []
     historyMax: 3
 

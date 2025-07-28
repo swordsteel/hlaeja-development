@@ -13,7 +13,7 @@ config:
   profiles: testing
   redis:
     database: 1
-    host: database-redis-master
+    host: dependency-redis-master
   deviceConfigurationUrl: http://device-configuration
   deviceDataUrl: http://device-data
   deviceRegistryUrl: http://device-register

@@ -1,7 +1,7 @@
 apiVersion: v2
-name: hlaeja-database
-description: A Helm chart for the hlaeja database chart wrapper
-version: 0.4.0
+name: hlaeja-dependency
+description: A Helm chart for the hlaeja dependency chart wrapper
+version: 0.1.0
 
 dependencies:
 

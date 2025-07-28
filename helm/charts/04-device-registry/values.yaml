@@ -11,7 +11,7 @@ secrets:
 
 config:
   profiles: testing
-  r2dbcUrl: r2dbc:postgresql://database-postgresql:5432/device_registry
+  r2dbcUrl: r2dbc:postgresql://dependency-postgresql:5432/device_registry
   r2dbcUsername: services
 
 jwtPrivetKey:

@@ -11,6 +11,6 @@ secrets:
 
 config:
   profiles: testing
-  influxdbUrl: http://database-influxdb
+  influxdbUrl: http://dependency-influxdb
 #  influxdbOrg: hlaeja
 #  influxdbBucket: hlaeja_ltd

@@ -11,5 +11,5 @@ secrets:
 
 config:
   profiles: testing
-  cassandraContactPoints: database-cassandra
+  cassandraContactPoints: dependency-cassandra
   cassandraUsername: service

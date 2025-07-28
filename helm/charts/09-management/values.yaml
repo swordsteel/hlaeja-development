@@ -13,7 +13,7 @@ config:
   profiles: testing
   redis:
     database: 2
-    host: database-redis-master
+    host: dependency-redis-master
   accountRegistryUrl: http://account-register
   deviceRegistryUrl: http://device-register
 
