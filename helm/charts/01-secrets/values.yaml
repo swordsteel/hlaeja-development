@@ -38,4 +38,9 @@ secrets:
 #      tier: frontend
 #      keystorePassword: ServiceKeystorePassword
 #      keystoreFile: ServiceKeystoreFileBase64==
+#    - name: registry-api-keystore
+#      app: registry-api
+#      tier: frontend
+#      keystorePassword: ServiceKeystorePassword
+#      keystoreFile: ServiceKeystoreFileBase64==
 

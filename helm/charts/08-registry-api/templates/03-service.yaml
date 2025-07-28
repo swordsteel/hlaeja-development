@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: registry-api
+  labels:
+    app: registry-api
+    environment: {{ .Values.environment }}
+    tier: frontend
+spec:
+  {{- if and .Values.loadBalancerIP (ne .Values.loadBalancerIP "") }}
+  type: LoadBalancer
+  loadBalancerIP: {{ .Values.loadBalancerIP }}
+  {{- end }}
+  selector:
+    app: registry-api
+  ports:
+    - protocol: TCP
+      port: 443
+      targetPort: 8443

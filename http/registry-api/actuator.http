@@ -1,5 +1,5 @@
 ### get actuator
-GET {{hostname}}/actuator`
-Authorization: Bearer {{token}}
-Content-Type: application/json`
+GET {{hostname}}/actuator
 
+### get actuator health
+GET {{hostname}}/actuator/health
