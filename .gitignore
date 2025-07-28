@@ -3,3 +3,4 @@ cert/
 http/*/http-client.env.json
 helm/values/*/
 helm/charts/02-database/Chart.lock
+helm/helmfile.yaml
