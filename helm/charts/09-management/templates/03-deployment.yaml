@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: management
+  labels:
+    app: management
+    environment: {{ .Values.environment }}
+    tier: frontend
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: management
+  template:
+    metadata:
+      labels:
+        app: management
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.docker.registry }}
+      containers:
+        - name: management-app
+          image: {{ .Values.docker.image }}
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: management-environment
+            - secretRef:
+                name: management-environment
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: jwt-volume
+              mountPath: /app/resources/cert/{{ .Values.jwtPublicKey.filename }}
+              subPath: {{ .Values.jwtPublicKey.filename }}
+              readOnly: true
+      volumes:
+        - name: jwt-volume
+          secret:
+            secretName: {{ .Values.jwtPublicKey.name }}
+            items:
+              - key: {{ .Values.jwtPublicKey.filename }}
+                path: {{ .Values.jwtPublicKey.filename }}

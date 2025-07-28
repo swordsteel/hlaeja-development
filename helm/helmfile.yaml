@@ -46,3 +46,9 @@ releases:
     chart: ./charts/08-registry-api
     values: []
     historyMax: 3
+
+  - name: management
+    namespace: hlaeja-testing
+    chart: ./charts/09-management
+    values: []
+    historyMax: 3
