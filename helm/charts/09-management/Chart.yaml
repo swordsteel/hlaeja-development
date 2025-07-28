@@ -1,0 +1,4 @@
+apiVersion: v2
+name: hlaeja-management
+description: A Helm chart for the hlaeja management
+version: 0.1.0

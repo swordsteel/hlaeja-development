@@ -1,0 +1,22 @@
+environment: testing
+replicas: 1
+#loadBalancerIP: 10.0.3.11
+
+docker:
+  registry: dockerRegistry
+  image: lulz.ltd/hlaeja/hlaeja-management:0.1.0
+
+secrets:
+  redisPassword: redisPassword
+
+config:
+  profiles: testing
+  redis:
+    database: 2
+    host: database-redis-master
+  accountRegistryUrl: http://account-register
+  deviceRegistryUrl: http://device-register
+
+jwtPublicKey:
+  name: account-jwt-public-key
+  filename: public_key.pem
