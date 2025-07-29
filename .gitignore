@@ -1,5 +1,5 @@
 .idea/
-cert/
+compose/cert/
 http/*/http-client.env.json
 helm/values/*/
 helm/charts/02-dependency/Chart.lock

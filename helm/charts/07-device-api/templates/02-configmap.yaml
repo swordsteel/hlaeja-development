@@ -19,10 +19,3 @@ data:
   SERVER_SSL_ENABLED: "true"
   SERVER_SSL_KEY_STORE: "/app/resources/cert/keystore.p12"
   SERVER_SSL_KEY_STORE_TYPE: "PKCS12"
-
-  # This was experimental and should be removed in later versions
-  MANAGEMENT_METRICS_TAGS_APPLICATION: "device-api"
-  MANAGEMENT_INFLUX_METRICS_EXPORT_ENABLED: "false"
-  MANAGEMENT_INFLUX_METRICS_EXPORT_URL: "http://influxdb"
-  # adding this here as it's going to be deleted and is not sued internally
-  MANAGEMENT_INFLUX_METRICS_EXPORT_TOKEN: "invalidInfluxDbToken=="
