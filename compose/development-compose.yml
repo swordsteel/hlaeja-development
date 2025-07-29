@@ -15,7 +15,7 @@ volumes:
 services:
 
   influxdb:
-    image: influxdb:2.7.10-alpine
+    image: influxdb:2.7.12-alpine
     container_name: InfluxDB
     restart: unless-stopped
     environment:
@@ -34,7 +34,7 @@ services:
       - influx-config:/etc/influxdb2
 
   postgres:
-    image: postgres:17.1-alpine
+    image: postgres:17.5-alpine
     container_name: PostgreSQL
     restart: unless-stopped
     environment:
@@ -48,7 +48,7 @@ services:
       - postgres:/var/lib/postgresql/data
 
   cassandra:
-    image: cassandra:5.0.2
+    image: cassandra:5.0.4
     container_name: Cassandra
     restart: unless-stopped
     environment:
@@ -62,7 +62,7 @@ services:
       - cassandra:/var/lib/cassandra
 
   redis:
-    image: redis:7.4.1-alpine
+    image: redis:8.0.3-alpine
     container_name: Redis
     restart: unless-stopped
     environment:

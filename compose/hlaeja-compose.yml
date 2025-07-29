@@ -8,7 +8,7 @@ networks:
 services:
 
   device-registry:
-    image: hlaeja-device-registry:0.5.0
+    image: ghcr.io/swordsteel/hlaeja-device-registry:0.6.0
     container_name: DeviceRegistry
     restart: unless-stopped
     environment:
@@ -22,7 +22,7 @@ services:
       - ./cert/device_private_key.pem:/app/resources/cert/private_key.pem
 
   device-data:
-    image: hlaeja-device-data:0.1.1
+    image: ghcr.io/swordsteel/hlaeja-device-data:0.2.0
     container_name: DeviceData
     restart: unless-stopped
     environment:
@@ -34,7 +34,7 @@ services:
       - 9020:8080
 
   device-configuration:
-    image: hlaeja-device-configuration:0.1.0
+    image: ghcr.io/swordsteel/hlaeja-device-configuration:0.2.0
     container_name: DeviceConfiguration
     restart: unless-stopped
     environment:
@@ -45,7 +45,7 @@ services:
       - 9030:8080
 
   device-api:
-    image: hlaeja-device-api:0.4.0
+    image: ghcr.io/swordsteel/hlaeja-device-api:0.5.0
     container_name: DeviceApi
     restart: unless-stopped
     environment:
@@ -61,7 +61,7 @@ services:
       - ./cert/device_api_keystore.p12:/app/resources/cert/keystore.p12
 
   registry-api:
-    image: hlaeja-registry-api:0.2.0
+    image: ghcr.io/swordsteel/hlaeja-registry-api:0.3.0
     container_name: RegistryApi
     restart: unless-stopped
     environment:
@@ -77,7 +77,7 @@ services:
       - ./cert/account_public_key.pem:/app/resources/cert/public_key.pem
 
   account-registry:
-    image: hlaeja-account-registry:0.2.0
+    image: ghcr.io/swordsteel/hlaeja-account-registry:0.3.0
     container_name: AccountRegistry
     restart: unless-stopped
     environment:
@@ -91,7 +91,7 @@ services:
       - ./cert/account_private_key.pem:/app/resources/cert/private_key.pem
 
   management:
-    image: hlaeja-management:0.2.0
+    image: ghcr.io/swordsteel/hlaeja-management:0.3.0
     container_name: Management
     restart: unless-stopped
     environment:
