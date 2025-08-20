@@ -8,7 +8,37 @@ metadata:
     tier: frontend
 data:
   SPRING_PROFILES_ACTIVE: {{ .Values.config.profiles | quote }}
+  {{- if and .Values.config.timeout (ne .Values.config.timeout "") }}
+  SPRING_SESSION_TIMEOUT: {{ .Values.config.timeout | quote }}
+  {{- end }}
+
+  {{- if and .Values.config.redis }}
+  {{- if and .Values.config.redis.database (ne .Values.config.redis.database "") }}
   SPRING_DATA_REDIS_DATABASE: {{ .Values.config.redis.database | quote }}
+  {{- end }}
+  {{- if and .Values.config.redis.host (ne .Values.config.redis.host "") }}
   SPRING_DATA_REDIS_HOST: {{ .Values.config.redis.host | quote }}
-  ACCOUNT_REGISTRY_URL: {{ .Values.config.accountRegistryUrl | quote }}
-  DEVICE_REGISTRY_URL: {{ .Values.config.deviceRegistryUrl | quote }}
+  {{- end }}
+  {{- end }}
+
+  {{- if and .Values.config.error }}
+  {{- if and .Values.config.error.exception (ne .Values.config.error.exception "") }}
+  SERVER_ERROR_INCLUDE_EXCEPTION: {{ .Values.config.error.exception | quote }}
+  {{- end }}
+  {{- if and .Values.config.error.message (ne .Values.config.error.message "") }}
+  SERVER_ERROR_INCLUDE_MESSAGE: {{ .Values.config.error.message | quote }}
+  {{- end }}
+  {{- if and .Values.config.error.stacktrace (ne .Values.config.error.stacktrace "") }}
+  SERVER_ERROR_INCLUDE_STACKTRACE: {{ .Values.config.error.stacktrace | quote }}
+  {{- end }}
+  {{- end }}
+
+  {{- if and .Values.config.accountRegistryUrl (ne .Values.config.accountRegistryUrl "") }}
+  ACCOUNT_REGISTRY_URL: {{ .Values.config.accountRegistryUrl }}
+  {{- end }}
+  {{- if and .Values.config.deviceRegistryUrl (ne .Values.config.deviceRegistryUrl "") }}
+  DEVICE_REGISTRY_URL: {{ .Values.config.deviceRegistryUrl }}
+  {{- end }}
+  SPRING_KAFKA_BOOTSTRAP_SERVERS: "dependency-kafka:9092"
+  SPRING_KAFKA_PROPERTIES_SECURITY_PROTOCOL: "SASL_PLAINTEXT"
+  SPRING_KAFKA_PROPERTIES_SASL_MECHANISM: "PLAIN"

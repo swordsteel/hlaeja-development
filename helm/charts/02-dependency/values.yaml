@@ -74,3 +74,12 @@ redis:
 #      type: LoadBalancer
 #      loadBalancerIP: 10.0.3.34
 
+kafka:
+#  clusterId: 00000000-0000-0000-0000-000000000000
+  sasl:
+    enabledMechanisms: PLAIN
+    client:
+#      users:
+#        - username
+#      passwords:
+#        - password

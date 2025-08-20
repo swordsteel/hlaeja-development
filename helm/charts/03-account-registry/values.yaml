@@ -8,6 +8,7 @@ docker:
 
 secrets:
   r2dbcPassword: "password"
+  kafkaPlainLoginModule: "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"clientUsername\" password=\"clientPassword\";"
 
 config:
   profiles: testing

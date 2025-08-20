@@ -42,4 +42,9 @@ secrets:
 #      tier: frontend
 #      keystorePassword: ServiceKeystorePassword
 #      keystoreFile: ServiceKeystoreFileBase64==
+#    - name: management-keystore
+#      app: management
+#      tier: frontend
+#      keystorePassword: ServiceKeystorePassword
+#      keystoreFile: ServiceKeystoreFileBase64==
 

@@ -24,3 +24,8 @@ dependencies:
   - name: redis
     version: 21.2.13
     repository: "oci://registry-1.docker.io/bitnamicharts"
+
+  # https://artifacthub.io/packages/helm/bitnami/kafka
+  - name: kafka
+    version: 32.4.2
+    repository: "oci://registry-1.docker.io/bitnamicharts"

@@ -11,3 +11,6 @@ data:
   SPRING_R2DBC_URL: {{ .Values.config.r2dbcUrl | quote }}
   SPRING_R2DBC_USERNAME: {{ .Values.config.r2dbcUsername | quote }}
   JWT_PRIVATE_KEY: "cert/{{ .Values.jwtPrivetKey.filename }}"
+  SPRING_KAFKA_BOOTSTRAP_SERVERS: "dependency-kafka:9092"
+  SPRING_KAFKA_PROPERTIES_SECURITY_PROTOCOL: "SASL_PLAINTEXT"
+  SPRING_KAFKA_PROPERTIES_SASL_MECHANISM: "PLAIN"

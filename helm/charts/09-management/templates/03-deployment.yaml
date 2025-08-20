@@ -27,17 +27,33 @@ spec:
                 name: management-environment
             - secretRef:
                 name: management-environment
+          env:
+            - name: SERVER_SSL_KEY_STORE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.keystoreRef }}
+                  key: keystore-password
           ports:
             - containerPort: 8080
           volumeMounts:
+            - name: keystore-volume
+              mountPath: /app/resources/cert/keystore.p12
+              subPath: keystore.p12
+              readOnly: true
             - name: jwt-volume
-              mountPath: /app/resources/cert/{{ .Values.jwtPublicKey.filename }}
-              subPath: {{ .Values.jwtPublicKey.filename }}
+              mountPath: /app/resources/cert/public_key.pem
+              subPath: public_key.pem
               readOnly: true
       volumes:
+        - name: keystore-volume
+          secret:
+            secretName: {{ .Values.keystoreRef }}
+            items:
+              - key: keystore.p12
+                path: keystore.p12
         - name: jwt-volume
           secret:
             secretName: {{ .Values.jwtPublicKey.name }}
             items:
-              - key: {{ .Values.jwtPublicKey.filename }}
-                path: {{ .Values.jwtPublicKey.filename }}
+              - key: {{ .Values.jwtPublicKey.key }}
+                path: public_key.pem

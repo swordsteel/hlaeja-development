@@ -8,15 +8,24 @@ docker:
 
 secrets:
   redisPassword: redisPassword
+  kafkaPlainLoginModule: "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"clientUsername\" password=\"clientPassword\";"
 
 config:
-  profiles: testing
-  redis:
-    database: 2
-    host: dependency-redis-master
-  accountRegistryUrl: http://account-register
-  deviceRegistryUrl: http://device-register
+  profiles: kubernetes
+#  error:
+#    exception: true
+#    message: always
+#    stacktrace: always
+#  timeout: 60m
+#  redis:
+#    database:
+#    port: 6379
+#    host: dependency-redis-master
+#  accountRegistryUrl: http://account-register
+#  deviceRegistryUrl: http://device-register
 
 jwtPublicKey:
   name: account-jwt-public-key
-  filename: public_key.pem
+  key: public_key.pem
+
+keystoreRef: management-keystore
