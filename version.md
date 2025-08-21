@@ -1,5 +1,15 @@
 # Hlæja Version History
 
+## Hlæja v0.8.0
+
+- hlaeja-account-registry:0.4.0
+- hlaeja-device-api:0.5.0
+- hlaeja-device-configuration:0.2.0
+- hlaeja-device-data:0.2.0
+- hlaeja-device-registry:0.7.0
+- hlaeja-management:0.4.0
+- hlaeja-registry-api:0.4.0
+
 ## Hlæja v0.7.0
 
 - hlaeja-account-registry:0.3.0

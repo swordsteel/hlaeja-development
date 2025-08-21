@@ -49,7 +49,9 @@ graph TD
       HDCS[Service] --> HDCD[(Cassandra)]
     end
     subgraph HAR[Hlæja Account Registry]
+      direction LR
       HARS[Service] --> HARD[(Postgres)]
+      HARS[Service] --> HDRK[/KAFKA\]
     end
   end
   subgraph HDA[Hlæja Device API]
@@ -59,9 +61,10 @@ graph TD
     HRAS[Service]
   end
   subgraph HM[Hlæja Management]
-    HMS[Service] -.-> HMR[(Redis)]
+    direction LR
+    HMS[Service] --> HMR[(Redis)]
+    HMK[/KAFKA\] --> HMS[Service]
   end
-
 
   HM --> HAR
   HM --> HDR
@@ -75,7 +78,7 @@ graph TD
   HDA --> HDD
 ```
 
-## Library and Gradle plugin dependency
+## Gradle Plugin Dependency
 
 ```mermaid
 graph RL
@@ -94,8 +97,10 @@ graph RL
     PSC[Plugin Service Container]
     PSIT[Plugin Service Integration Test]
     PSPR[Plugin Service Process Resource]
+    PUS[Plugin UI Service]
+    PUSTM[Plugin UI Service Thymeleaf Minify]
   end
-  
+
   PLM --> PL
   PLP --> PL
   PCo ---> PL
@@ -107,54 +112,72 @@ graph RL
   PSIT --> PS
   PSPR --> PS
 
+  PUSTM --> PUS
+  PS --> PUS
+
+  CL[Common Library]
+  PL ---> CL
+
+  CS[Common Service]
+  PCe -.-> CS
+  PS --> CS
+
+  CUS[Common UI Service]
+  PUS --> CUS
+  PCe -.-> CUS
+```
+
+## Library And Gradle Plugin Dependency
+
+```mermaid
+graph RL
+;
+  
+  HGP[Hlaeja Gradle Plugin]
+
   CML[Common Messages Library]
-  PL --> CML
-
+  HGP --> CML
+  
   JL[JWT Library]
-  PL --> JL
-
+  HGP --> JL
+  
   TL[Test Library]
-  PL --> TL
+  HGP --> TL
 
   DRS[Device Registry Service]
-  PS --> DRS
-  PCe --> DRS
-  TL -.-> DRS
+  HGP --> DRS
+  TL --> DRS
   CML --> DRS
   JL --> DRS
-
+    
   DDS[Device Data Service]
-  PS --> DDS
+  HGP --> DDS
   TL -.-> DDS
   CML --> DDS
-
+  
   DCS[Device Configuration Service]
   TL -.-> DCS
-  PS --> DCS
+  HGP --> DCS
   CML --> DCS
-
-  AS[Account Service]
+  
+  AS[Account Registry Service]
   TL --> AS
+  HGP --> AS
   CML --> AS
-  PS --> AS
-  PCe --> AS
   JL --> AS
-
+  
   DAS[Device API Service]
-  PS --> DAS
   CML --> DAS
   JL --> DAS
-  PCe --> DAS
-
+  HGP --> DAS
+  
   RAS[Registry API Service]
   CML --> RAS
   JL --> RAS
-  PS --> RAS
-  PCe --> RAS
-
+  HGP --> RAS
+  
   MUS[Management UI Service]
   CML --> MUS
   JL --> MUS
-  PS --> MUS
-  PCe -.-> MUS
+  HGP --> MUS
 ```
